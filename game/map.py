@@ -39,3 +39,16 @@ def get_collision_tiles(tilesize):
                 rect = pygame.Rect(x * tilesize, y * tilesize, tilesize, tilesize)
                 tiles.append(rect)
     return tiles
+
+def in_bounds(tx, ty):
+    return 0 <= ty < len(MAP_LAYOUT) and 0 <= tx < len(MAP_LAYOUT[0])
+
+def tile_rect(tx, ty, tilesize):
+    return pygame.Rect(tx*tilesize, ty*tilesize, tilesize, tilesize)
+
+def draw_cursor(surface, tx, ty, tilesize):
+    rect = tile_rect(tx, ty, tilesize)
+    surf = pygame.Surface((tilesize, tilesize), pygame.SRCALPHA)
+    surf.fill((255, 255, 255, 40))
+    surface.blit(surf, rect.topleft)
+    pygame.draw.rect(surface, (255, 255, 255), rect, 1)

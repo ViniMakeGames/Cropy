@@ -1,7 +1,7 @@
 import pygame
 import sys
 from player import Player
-from map import draw_map, get_collision_tiles
+from map import draw_map, get_collision_tiles, in_bounds, draw_cursor
 
 # Inicialization
 pygame.init()
@@ -32,6 +32,14 @@ while running:
     draw_map(screen, TILESIZE)
 
     all_sprites.draw(screen)
+    
+    cx, cy = player.rect.center
+    px, py = cx // TILESIZE, cy // TILESIZE
+    fx, fy = int(player.facing.x), int(player.facing.y)
+    tx, ty = px + fx, py + fy
+    if in_bounds(tx, ty):
+        draw_cursor(screen, tx, ty, TILESIZE)
+
     pygame.display.flip()
 
 pygame.quit()

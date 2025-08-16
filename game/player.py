@@ -6,9 +6,11 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.Surface((tilesize, tilesize))
         self.image.fill((255, 255, 0))
         self.rect = self.image.get_rect(topleft=pos)
+
         self.speed = 2
         self.pos = pygame.math.Vector2(self.rect.topleft)
         self.walls = walls
+        self.facing = pygame.math.Vector2(0, 1)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -21,6 +23,12 @@ class Player(pygame.sprite.Sprite):
             dx = -self.speed
         if keys[pygame.K_RIGHT]:
             dx = self.speed
+
+        if dx or dy:
+            fx = (dx > 0) - (dx < 0)
+            fy = (dy > 0) - (dy < 0)
+            if fx or fy:
+                self.facing.update(fx, fy)
 
         self.pos.x += dx
         self.rect.topleft = self.pos
