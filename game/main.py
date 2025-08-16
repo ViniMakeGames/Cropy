@@ -1,6 +1,7 @@
 import pygame
 import sys
 from player import Player
+from map import draw_map
 
 # Inicialization
 pygame.init()
@@ -26,7 +27,7 @@ while running:
 
     all_sprites.update()
 
-    screen.fill((34, 177, 76))
+    draw_map(screen, TILESIZE)
     all_sprites.draw(screen)
     pygame.display.flip()
 
