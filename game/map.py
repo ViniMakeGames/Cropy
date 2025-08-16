@@ -1,5 +1,6 @@
 import pygame
 
+BLOCKED_TILES = [1]
 # 0 = grass, 1 = dirt
 MAP_LAYOUT = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -29,3 +30,12 @@ def draw_map(surface, tilesize):
                 pygame.draw.rect(surface, (34, 177, 76), rect)  # grass
             elif tile == 1:
                 pygame.draw.rect(surface, (185, 122, 87), rect)  # dirt
+
+def get_collision_tiles(tilesize):
+    tiles = []
+    for y, row in enumerate(MAP_LAYOUT):
+        for x, tile in enumerate(row):
+            if tile in BLOCKED_TILES:
+                rect = pygame.Rect(x * tilesize, y * tilesize, tilesize, tilesize)
+                tiles.append(rect)
+    return tiles
