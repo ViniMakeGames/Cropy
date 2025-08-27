@@ -8,21 +8,31 @@ G_DIRT_WET = 2
 O_NONE = 0
 O_FENCE = 1
 O_SEED = 2
-O_PLANT_S1 = 3
-O_PLANT_S2 = 4
-O_PLANT_S3 = 5
-O_PLANT_S4 = 6
+O_LOG = 3
+O_ROCK = 4
+O_PLANT_S1 = 5
+O_PLANT_S2 = 6
+O_PLANT_S3 = 7
+O_PLANT_S4 = 8
 
 BLOCK_OBJECTS = {O_FENCE}
 
 MAP_GROUND = [
     [G_GRASS]*20,
     [G_GRASS]*20,
-    [G_GRASS]+[G_GRASS]*18+[G_GRASS],
-    [G_GRASS]+[G_GRASS]*18+[G_GRASS],
-    [G_GRASS]+[G_GRASS]*18+[G_GRASS],
     [G_GRASS]*20,
-    *([[G_GRASS]*20]*10),
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
+    [G_GRASS]*20,
 ]
 
 MAP_OBJECTS = [
