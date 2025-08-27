@@ -1,16 +1,15 @@
 import pygame
+from assets import load_img
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, tilesize, walls):
         super().__init__()
-        self.image = pygame.Surface((tilesize, tilesize))
-        self.image.fill((255, 255, 0))
-        self.rect = self.image.get_rect(topleft=pos)
-
+        self.image = load_img("player_d0", (tilesize, tilesize))
+        self.rect  = self.image.get_rect(topleft=pos)
         self.speed = 2
-        self.pos = pygame.math.Vector2(self.rect.topleft)
+        self.pos   = pygame.math.Vector2(self.rect.topleft)
         self.walls = walls
-        self.facing = pygame.math.Vector2(0, 1)
+        self.facing= pygame.math.Vector2(0, 1)
 
     def input(self):
         keys = pygame.key.get_pressed()
