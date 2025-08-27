@@ -1,21 +1,14 @@
 import pygame
 from assets import load_img
-
-G_GRASS = 0
-G_DIRT = 1
-G_DIRT_WET = 2
-
-O_NONE = 0
-O_FENCE = 1
-O_SEED = 2
-O_LOG = 3
-O_ROCK = 4
-O_PLANT_S1 = 5
-O_PLANT_S2 = 6
-O_PLANT_S3 = 7
-O_PLANT_S4 = 8
-
-BLOCK_OBJECTS = {O_FENCE}
+from data import (
+    G_GRASS, G_DIRT, G_DIRT_WET,
+    O_NONE, O_FENCE, O_LOG, O_ROCK,
+    O_CORN_SEED, O_CORN_S1, O_CORN_S2, O_CORN_S3, O_CORN_S4, O_CORN,
+    O_CARROT_SEED, O_CARROT_S1, O_CARROT_S2, O_CARROT_S3, O_CARROT_S4, O_CARROT,
+    O_TOMATO_SEED, O_TOMATO_S1, O_TOMATO_S2, O_TOMATO_S3, O_TOMATO_S4, O_TOMATO,
+    BLOCK_OBJECTS, GROUND_SPRITES, OBJECT_SPRITES, CROPS,
+    is_seed, is_ready_to_harvest, get_crop_result,
+)
 
 MAP_GROUND = [
     [G_GRASS]*20,
@@ -70,26 +63,13 @@ def _img(key, name, size):
 
 def draw_map(surface, tilesize):
     s = (tilesize, tilesize)
-    ground_res = {
-        G_GRASS:  "grass",
-        G_DIRT:   "soil",
-        G_DIRT_WET:"soil_wet",
-    }
-    obj_res = {
-        O_FENCE:   "fence",
-        O_SEED:    "corn_seed",
-        O_PLANT_S1:"corn_0",
-        O_PLANT_S2:"corn_1",
-        O_PLANT_S3:"corn_2",
-        O_PLANT_S4:"corn_3",
-    }
     for y,row in enumerate(MAP_GROUND):
         for x,t in enumerate(row):
-            surface.blit(_img(("g",t,s), ground_res[t], s),(x*tilesize,y*tilesize))
+            surface.blit(_img(("g",t,s), GROUND_SPRITES[t], s),(x*tilesize,y*tilesize))
     for y,row in enumerate(MAP_OBJECTS):
         for x,t in enumerate(row):
             if t!=O_NONE:
-                surface.blit(_img(("o",t,s), obj_res[t], s),(x*tilesize,y*tilesize))
+                surface.blit(_img(("o",t,s), OBJECT_SPRITES[t], s),(x*tilesize,y*tilesize))
 
 def in_bounds(tx,ty):
     return 0<=ty<len(MAP_GROUND) and 0<=tx<len(MAP_GROUND[0])

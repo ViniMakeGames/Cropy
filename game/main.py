@@ -24,6 +24,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_n:
+            from days import advance_day
+            advance_day()
         player.handle_event(event, TILESIZE)
 
     all_sprites.update()
